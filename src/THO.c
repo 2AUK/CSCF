@@ -117,7 +117,7 @@ double A(int i, int r, int u, int l1, int l2, double PAx, double PBx, double CPx
 
 double* G_array(int l1, int l2, double PAx, double PBx, double CPx, double gamma){
   int l1l2 = l1 + l2;
-  double* out = malloc(sizeof (double) * l1l2+1);
+  double* out = malloc(sizeof (double) * (l1l2+1));
   if (l1l2 == 0){
     out[0] = 1.0;
   } else if (l1l2 == 1){
@@ -192,7 +192,7 @@ double* C_array(int l1, int l2, double PAx, double PBx, double gamma1, int l3, i
   double delta = ((1 / (4 * gamma1)) + (1 / (4 * gamma2)));
   double* H1 = H_array(l1, l2, PAx, PBx, gamma1);
   double* H2 = H_array(l3, l4, QCx, QDx, gamma2);
-  double* out = malloc(sizeof (double) * l1+l2+l3+l4+1);
+  double* out = malloc(sizeof (double) * (l1+l2+l3+l4+1));
   for (int L = 0; L <= l1 + l2; L++){
     for(int M = 0; M <= l3 + l4; M++){
       for(int u = 0; u <= floor((L+M)/2); u++){

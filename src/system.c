@@ -14,23 +14,33 @@ sys* system_create(int natoms, int nbfs){
     free(ret_sys);
     return NULL;
   }
-  ret_sys->S = malloc(sizeof (double) * nbfs*nbfs);
+  ret_sys->S = calloc((nbfs*nbfs), sizeof(double));
   if (ret_sys->S == NULL){
+    free(ret_sys->basisfunctions);
     free(ret_sys);
     return NULL;
   }
-  ret_sys->T = malloc(sizeof (double) *  nbfs*nbfs);
+  ret_sys->T = calloc((nbfs*nbfs), sizeof(double));
   if (ret_sys->T == NULL){
+    free(ret_sys->basisfunctions);
+    free(ret_sys->S);
     free(ret_sys);
     return NULL;
   }
-  ret_sys->V = malloc(sizeof (double) *  nbfs*nbfs);
+  ret_sys->V = calloc((nbfs*nbfs), sizeof(double));
   if (ret_sys->V == NULL){
+    free(ret_sys->basisfunctions);
+    free(ret_sys->S);
+    free(ret_sys->T);
     free(ret_sys);
     return NULL;
   }
-  ret_sys->ERI = malloc(sizeof (double) *  nbfs*nbfs*nbfs*nbfs);
+  ret_sys->ERI = calloc((nbfs*nbfs*nbfs*nbfs), sizeof(double));
   if (ret_sys->ERI == NULL){
+    free(ret_sys->basisfunctions);
+    free(ret_sys->S);
+    free(ret_sys->T);
+    free(ret_sys->V);
     free(ret_sys);
     return NULL;
   }
@@ -39,9 +49,6 @@ sys* system_create(int natoms, int nbfs){
 
 void system_destroy(sys* in_system){
   if (in_system != NULL) {
-    for(int i = 0; i < in_system->nbfs; i++){
-      bfn_destroy(&in_system->basisfunctions[i]);
-    }
     free(in_system->basisfunctions);
     free(in_system->S);
     free(in_system->T);

@@ -21,8 +21,8 @@ int main(int argc, char *argv[])
   int s[3] = { 0, 0, 0 };
   double c1[3] = {0.0, 0.0, 0.7};
   double c2[3] = {0.0, 0.0, -0.7};
-  double c3[3] = {0.0, 0.0, 0.20};
-  double c4[3] = {0.0, 0.0, 0.13};
+  //double c3[3] = {0.0, 0.0, 0.20};
+  //double c4[3] = {0.0, 0.0, 0.13};
   sys* hyd = system_create(2, 2);
   bfn* H1 = bfn_create(3, e, c, c1, s, 1);
   bfn* H2 = bfn_create(3, e, c, c2, s, 1);
@@ -34,5 +34,9 @@ int main(int argc, char *argv[])
   //hyd->basisfunctions[3] = *H4;
   calculate_integral(hyd);
   system_destroy(hyd);
+  bfn_destroy(H1);
+  bfn_destroy(H2);
+  //bfn_destroy(H3);
+  //bfn_destroy(H4);
   return 0;
 }

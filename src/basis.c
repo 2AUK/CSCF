@@ -5,10 +5,9 @@
 #include <stdlib.h>
 
 void normalise(bfn* basis){
-  double l, m, n;
-  l = basis->shell[0];
-  m = basis->shell[1];
-  n = basis->shell[2];
+  const int l = basis->shell[0];
+  const int m = basis->shell[1];
+  const int n = basis->shell[2];
   for(int i = 0; i < 3; i++){
     double num = pow(2.0, 2.0*(l+m+n) + 3.0/2.0) * pow(basis->exps[i], (l+m+n) + 3.0/2.0);
     double denom = double_factorial(2*l-1) * double_factorial(2*m-1) * double_factorial(2*n-1) * pow(M_PI, 3.0/2.0);
@@ -18,7 +17,7 @@ void normalise(bfn* basis){
 
 bfn* bfn_create(int nprimitives, double* exps, double* coefs, double origin[3], int shell[3], double atomno){
   
-  bfn *ret_bfn = malloc(sizeof (bfn));
+  bfn *ret_bfn = malloc(sizeof (bfn) * 1);
   if (ret_bfn == NULL)
     return NULL;
 
@@ -30,11 +29,14 @@ bfn* bfn_create(int nprimitives, double* exps, double* coefs, double origin[3], 
   }
   ret_bfn->coefs = malloc(sizeof (double) * nprimitives);
   if (ret_bfn->coefs == NULL){
+    free(ret_bfn->exps);
     free(ret_bfn);
     return NULL;
   }
   ret_bfn->norm = malloc(sizeof (double) * nprimitives);
   if (ret_bfn->norm == NULL){
+    free(ret_bfn->exps);
+    free(ret_bfn->coefs);
     free(ret_bfn);
     return NULL;
   }
@@ -53,9 +55,9 @@ bfn* bfn_create(int nprimitives, double* exps, double* coefs, double origin[3], 
 
 void bfn_destroy(bfn* in_bfn){
   if (in_bfn != NULL) {
-    free(in_bfn->coefs);
-    free(in_bfn->exps);
     free(in_bfn->norm);
-    //free(in_bfn);
+    free(in_bfn->exps);
+    free(in_bfn->coefs);
+    free(in_bfn);
   }
 }
