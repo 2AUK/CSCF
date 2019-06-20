@@ -39,7 +39,7 @@ void calculate_integral(sys* mol){
       }
     }
   }
-  print_matrix(mol->ERI, 8, 2);
+  print_matrix(mol->ERI, (mol->nbfs * mol->nbfs) * mol->nbfs, mol->nbfs);
 }
 
 double f(int j, int l, int m, double PA, double PB){

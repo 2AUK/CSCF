@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.9)
 project(SCF)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wextra -Wall")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -Wextra -Wall")
 
 include_directories(include)
 

@@ -1,4 +1,5 @@
 #include "system.h"
+#include "basis.h"
 #include <stdlib.h>
 
 sys* system_create(int natoms, int nbfs){
@@ -38,6 +39,9 @@ sys* system_create(int natoms, int nbfs){
 
 void system_destroy(sys* in_system){
   if (in_system != NULL) {
+    for(int i = 0; i < in_system->nbfs; i++){
+      bfn_destroy(&in_system->basisfunctions[i]);
+    }
     free(in_system->basisfunctions);
     free(in_system->S);
     free(in_system->T);

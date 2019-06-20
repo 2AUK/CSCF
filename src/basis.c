@@ -56,6 +56,6 @@ void bfn_destroy(bfn* in_bfn){
     free(in_bfn->coefs);
     free(in_bfn->exps);
     free(in_bfn->norm);
-    free(in_bfn);
+    //free(in_bfn);
   }
 }
