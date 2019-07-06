@@ -62,6 +62,6 @@ void print_system_info(sys* system){
 
 }
 
-void system_from_file(FILE* infile, char* basis){
+sys* system_from_file(FILE* infile, char* basis){
 
 }

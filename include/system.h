@@ -14,7 +14,7 @@ typedef struct system {
 
 void print_system_info(sys*);
 
-void system_from_file(FILE*, char*);
+sys* system_from_file(FILE*, char*);
 
 sys* system_create(int, int);
 
