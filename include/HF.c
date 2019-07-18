@@ -1,6 +1,7 @@
 #include "HF.h"
 
 HF* HF_create(sys in_sys){
+  
   HF *ret_HF = malloc(sizeof (HF));
   if (ret_HF == NULL)
     return NULL;
@@ -30,4 +31,9 @@ HF* HF_create(sys in_sys){
     free(ret_HF->Pnew);
     free(ret_HF);
   }
+  
+}
+
+double calcnuclrepl(sys in_sys){
+  
 }

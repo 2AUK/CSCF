@@ -21,3 +21,5 @@ double min(double, double);
 double max(double, double);
 
 double boys(double, double);
+
+void broadcast_mm(double*, double*, int, int, double*);

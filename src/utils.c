@@ -87,3 +87,11 @@ void gpc(double* A, double a, double* B, double b, double* Q){
 double boys(double n, double T){
   return gsl_sf_hyperg_1F1(n+0.5, n+1.5, -T) / (2.0*n + 1.0);
 }
+
+void broadcast_mm(double* m1, double* m2, int N, int M, double* out){
+  for(int i = 0; i < N; i++){
+    for(int j = 0; j < M; j++){
+      out[i*M + j] = m1[i*M + j] + m2[i*M + j];
+    }
+  }
+}

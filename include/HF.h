@@ -16,3 +16,6 @@ typedef struct HF {
 HF* HF_create(sys);
 
 double calcnuclrepl(sys);
+
+//For one cycle
+void update(HF);
